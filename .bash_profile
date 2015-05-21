@@ -25,6 +25,10 @@ for option in autocd globstar; do
 	shopt -s "$option" 2> /dev/null;
 done;
 
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+. $(brew --prefix)/etc/bash_completion
+fi
+
 # Add tab completion for many Bash commands
 if which brew > /dev/null && [ -f "$(brew --prefix)/share/bash-completion/bash_completion" ]; then
 	source "$(brew --prefix)/share/bash-completion/bash_completion";
@@ -46,3 +50,9 @@ complete -W "NSGlobalDomain" defaults;
 
 # Add `killall` tab completion for common apps
 complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall;
+
+source ~/perl5/perlbrew/etc/bashrc
+
+# added by DuckPAN installer
+eval $(perl -I${HOME}/perl5/lib/perl5 -Mlocal::lib)
+
